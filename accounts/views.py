@@ -11,7 +11,7 @@ from .models import User
 
 
 
-# Create your views here.
+
 class SignupView(APIView):
 
     def post(self,request):
@@ -75,7 +75,6 @@ class LoginView(APIView):
         user = authenticate(username=username,password=password)
 
         # 로그인 시 유저의 아이디, 비밀번호 확인
-
         if user is None:
             return Response({"error":"아이디 또는  비밀번호가 올바르지 않습니다."},status=400)
         
@@ -90,7 +89,6 @@ class LoginView(APIView):
     
 
 class ProfileView(APIView):
-
     permission_classes = [IsAuthenticated]
 
     def get(self, request, username):
