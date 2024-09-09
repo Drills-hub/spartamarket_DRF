@@ -18,5 +18,7 @@ class User(AbstractUser):
     gender = models.CharField(max_length=1,choices = GENDER_CHOICES ,null = True, blank= True)
     introduction = models.CharField(max_length=50, null = True, blank= True)
 
+    def __str__(self):
+        return self.username  
 
 
