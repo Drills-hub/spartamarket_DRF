@@ -1,8 +1,13 @@
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from django.contrib.auth import authenticate
+from .serializer import UserSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
+
 
 
 
@@ -49,8 +54,8 @@ class SignupView(APIView):
         
         
     
-        
-        User.objects.create_user(
+        # 유저 생성
+        user=User.objects.create_user(
             username = request.data.get("username"),
             name = request.data.get("name"),
             password = request.data.get("password"),
@@ -60,5 +65,41 @@ class SignupView(APIView):
             gender = request.data.get("gender"),
             introduction =request.data.get("introduction"),
             )
+        
+        return Response(f"{user.username}님 환영합니다!",status=201)           
 
-        return Response(f"{request.data.get('username')}님 환영합니다!",status=201)                                   
+class LoginView(APIView):
+    def post(self,requset):
+        username =requset.data.get("username")
+        password =requset.data.get("password")
+        user = authenticate(username=username,password=password)
+
+        # 로그인 시 유저의 아이디, 비밀번호 확인
+
+        if user is None:
+            return Response({"error":"아이디 또는  비밀번호가 올바르지 않습니다."},status=400)
+        
+        res_data = UserSerializer(user).data
+        refresh = RefreshToken.for_user(user)
+        refresh_token = str(refresh)
+        access_token = str(refresh.access_token)
+        res_data["access_token"]= access_token
+        res_data["refresh_token"]= refresh_token
+
+        return Response(res_data)
+    
+
+class ProfileView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, username):
+        check_user = request.user
+        if check_user.username != username:
+            return Response({"error":" 잘못된 접근 입니다."},status=401)
+            
+        user = User.objects.get(username=username)
+        profile = UserSerializer(user)  
+
+        return Response(profile.data, status=200)
+
