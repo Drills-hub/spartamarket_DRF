@@ -11,5 +11,6 @@ class ProductSerializer(serializers.ModelSerializer):
                 'seller',
                 'content',
                 'created_at',
+                'updated_at',
                 'image',
                 )

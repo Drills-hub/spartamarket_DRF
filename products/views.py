@@ -1,10 +1,12 @@
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Product
+from django.shortcuts import get_object_or_404
 from.serializer import ProductSerializer
+from .models import Product
 
+#페이지네이션
 class ProductPagination(PageNumberPagination):
     page_size = 5
     max_page_size = 10
@@ -20,7 +22,7 @@ class ProductView(APIView):
     def post(self, request):
         errors=[]
 
-        for field in ['title', 'image', 'content']:
+        for field in ['title', 'content']:
             if request.data.get(field) is None :
                 errors.append(f"{field}는 필수입니다.")
 
@@ -33,7 +35,7 @@ class ProductView(APIView):
         product=Product.objects.create(
             title=request.data.get('title'),
             content=request.data.get('content'),
-            image=request.data.get('image'),
+            # image=request.data.get('image'),
             seller = request.user
             )
         return Response(f"{product.title}이 생성되었습니다.", status=201)
@@ -48,3 +50,27 @@ class ProductView(APIView):
 
         serializer = ProductSerializer(paginated_products, many=True)
         return paginator.get_paginated_response(serializer.data)
+    
+class ProductEditView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, productId):
+        check_user = request.user
+        product = get_object_or_404(Product, id=productId)
+
+        if product.seller != check_user:
+            return Response({"error": "잘못된 접근입니다."}, status=403)
+        serializer = ProductSerializer(product, data=request.data, partial=True)
+
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=200)
+    
+    def delete(self, request, productId):
+        check_user = request.user
+        product = get_object_or_404(Product, id=productId)
+
+        if product.seller == check_user:
+            product.delete()
+            data ={"id":f"{productId}는 삭제되었습니다."}
+            return Response(data, status=200)

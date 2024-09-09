@@ -94,7 +94,7 @@ class ProfileView(APIView):
     def get(self, request, username):
         check_user = request.user
         if check_user.username != username:
-            return Response({"error":" 잘못된 접근 입니다."},status=401)
+            return Response({"error":" 잘못된 접근 입니다."},status=403)
             
         user = User.objects.get(username=username)
         profile = UserSerializer(user)  
