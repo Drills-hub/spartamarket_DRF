@@ -38,7 +38,7 @@ Django REST Framework를 학습하기 위한 spartamarket_DRF 프로젝트 입�
 중고 마켓을 모티브로 구성 되어있으며,기본적인 회원기능과 상품기능으로 구분되어있습니다.
 
 앱의 구성은 크게 두 가지로 회원기능인 "accounts"와 상품기능인"products"로 나누어 집니다.
-
+'''
 products
  ┣ migrations
  ┃ ┣ __pycache__
@@ -64,7 +64,7 @@ products
  ┣ urls.py
  ┣ views.py
  ┗ __init__.py
-
+'''
   📦products
  ┣ 📂migrations
  ┃ ┣ 📂__pycache__
