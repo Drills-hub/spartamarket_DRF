@@ -40,11 +40,32 @@ Django REST Framework를 학습하기 위한 spartamarket_DRF 프로젝트 입�
 앱의 구성은 크게 두 가지로 회원기능인 "accounts"와 상품기능인"products"로 나누어 집니다.
 
 # ERD
-
+![spartamarket_DRF _ERD](https://github.com/user-attachments/assets/dc4b490a-e554-4473-9ac1-2ba023ca8ef5)
 ## 기능
+<details>
+  <summary>회원기능</summary>
+  1.회원가입
+  ![화면 캡처 2024-09-10 165518](https://github.com/user-attachments/assets/aea2fe39-ea84-400b-b533-34d3da588cb3)
+  2.로그인
+  ![화면 캡처 2024-09-10 165628](https://github.com/user-attachments/assets/03d08466-2479-4591-b62c-a8d6a0a50b06)
+  3.로그아웃
+  ![화면 캡처 2024-09-10 165732](https://github.com/user-attachments/assets/df08f3fc-44ae-4289-833d-d6cf43198e24)
+  4.프로필 조회
+  ![화면 캡처 2024-09-10 165819](https://github.com/user-attachments/assets/02b64c02-49b4-48fb-83ae-a6b34a72a1bb)
 
-프로젝트의 주요 기능을 나열합니다.
-- 기능 1
-- 기능 2
-- 기능 3
+</details>
+
+<details>
+  <summary>상품기능</summary>
+  1.상품 올리기
+  ![화면 캡처 2024-09-10 165936](https://github.com/user-attachments/assets/9b36495c-5d89-4c39-b533-5789455d642a)
+  2.상품 리스트 조회
+  ![image](https://github.com/user-attachments/assets/4fd7bf36-4751-4cbd-bc6c-28331f7ad006)
+  3.상품 수정
+  ![수정](https://github.com/user-attachments/assets/4389225b-6e90-4111-a8d6-d1b652e3e1ec)
+  4.상품 삭제
+  ![스크린샷 2024-09-10 014436](https://github.com/user-attachments/assets/c2f7818f-2840-48b2-b65d-190162162cd7)
+
+</details>
+
 
