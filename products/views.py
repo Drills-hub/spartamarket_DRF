@@ -1,10 +1,13 @@
 from rest_framework.permissions import IsAuthenticated,AllowAny
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from.serializer import ProductSerializer
 from .models import Product
+from django.db.models import Q
 
 #페이지네이션
 class ProductPagination(PageNumberPagination):
@@ -31,12 +34,12 @@ class ProductView(APIView):
             
         if errors:
             return Response({"errors": errors}, status=400)
-
+        user = request.user
         product=Product.objects.create(
             title=request.data.get('title'),
             content=request.data.get('content'),
-            # image=request.data.get('image'),
-            seller = request.user
+            image=request.data.get('image'),
+            seller = user
             )
         return Response(f"{product.title}이 생성되었습니다.", status=201)
     
@@ -45,9 +48,16 @@ class ProductView(APIView):
 
     def get(self, request):
         products = Product.objects.all()
+        search_query = request.query_params.get('search', None)
+        if search_query:
+            products = products.filter(
+                Q(title__icontains=search_query) |
+                Q(seller__username__icontains=search_query) |
+                Q(content__icontains=search_query)
+            ) 
+
         paginator = self.pagination_class()
         paginated_products = paginator.paginate_queryset(products, request)
-
         serializer = ProductSerializer(paginated_products, many=True)
         return paginator.get_paginated_response(serializer.data)
     

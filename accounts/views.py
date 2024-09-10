@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from .serializer import UserSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
@@ -101,3 +101,9 @@ class ProfileView(APIView):
 
         return Response(profile.data, status=200)
 
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        logout(request)  
+        return Response({"로그아웃 성공"}, status=204)
