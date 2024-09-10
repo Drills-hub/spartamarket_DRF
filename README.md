@@ -39,31 +39,31 @@ Django REST Framework를 학습하기 위한 spartamarket_DRF 프로젝트 입�
 
 앱의 구성은 크게 두 가지로 회원기능인 "accounts"와 상품기능인"products"로 나누어 집니다.
 
-📦accounts
- ┣ 📂migrations
- ┃ ┣ 📂__pycache__
- ┃ ┃ ┣ 📜0001_initial.cpython-310.pyc
- ┃ ┃ ┣ 📜0002_user_name_alter_user_gender.cpython-310.pyc
- ┃ ┃ ┗ 📜__init__.cpython-310.pyc
- ┃ ┣ 📜0001_initial.py
- ┃ ┣ 📜0002_user_name_alter_user_gender.py
- ┃ ┗ 📜__init__.py
- ┣ 📂__pycache__
- ┃ ┣ 📜admin.cpython-310.pyc
- ┃ ┣ 📜apps.cpython-310.pyc
- ┃ ┣ 📜models.cpython-310.pyc
- ┃ ┣ 📜serializer.cpython-310.pyc
- ┃ ┣ 📜urls.cpython-310.pyc
- ┃ ┣ 📜views.cpython-310.pyc
- ┃ ┗ 📜__init__.cpython-310.pyc
- ┣ 📜admin.py
- ┣ 📜apps.py
- ┣ 📜models.py
- ┣ 📜serializer.py
- ┣ 📜tests.py
- ┣ 📜urls.py
- ┣ 📜views.py
- ┗ 📜__init__.py
+products
+ ┣ migrations
+ ┃ ┣ __pycache__
+ ┃ ┃ ┣ 0001_initial.cpython-310.pyc
+ ┃ ┃ ┣ 0002_hashtag_product_hashtag.cpython-310.pyc
+ ┃ ┃ ┣ 0003_rename_hashtag_product_hashtags.cpython-310.pyc
+ ┃ ┃ ┗ __init__.cpython-310.pyc
+ ┃ ┣ 0001_initial.py
+ ┃ ┗ __init__.py
+ ┣ __pycache__
+ ┃ ┣ admin.cpython-310.pyc
+ ┃ ┣ apps.cpython-310.pyc
+ ┃ ┣ models.cpython-310.pyc
+ ┃ ┣ serializer.cpython-310.pyc
+ ┃ ┣ urls.cpython-310.pyc
+ ┃ ┣ views.cpython-310.pyc
+ ┃ ┗ __init__.cpython-310.pyc
+ ┣ admin.py
+ ┣ apps.py
+ ┣ models.py
+ ┣ serializer.py
+ ┣ tests.py
+ ┣ urls.py
+ ┣ views.py
+ ┗ __init__.py
 
   📦products
  ┣ 📂migrations
