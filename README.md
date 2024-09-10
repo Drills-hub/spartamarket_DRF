@@ -41,18 +41,22 @@ Django REST Framework를 학습하기 위한 spartamarket_DRF 프로젝트 입�
 
 # ERD
 ![spartamarket_DRF _ERD](https://github.com/user-attachments/assets/dc4b490a-e554-4473-9ac1-2ba023ca8ef5)
+
 ## 기능
 <details>
   <summary>회원기능</summary>
   1.회원가입
   
   ![화면 캡처 2024-09-10 165518](https://github.com/user-attachments/assets/aea2fe39-ea84-400b-b533-34d3da588cb3)
+  
   2.로그인
   
   ![화면 캡처 2024-09-10 165628](https://github.com/user-attachments/assets/03d08466-2479-4591-b62c-a8d6a0a50b06)
+  
   3.로그아웃
   
   ![화면 캡처 2024-09-10 165732](https://github.com/user-attachments/assets/df08f3fc-44ae-4289-833d-d6cf43198e24)
+  
   4.프로필 조회
   
   ![화면 캡처 2024-09-10 165819](https://github.com/user-attachments/assets/02b64c02-49b4-48fb-83ae-a6b34a72a1bb)
